@@ -1,0 +1,87 @@
+html,
+body,
+div,
+.columns {
+  margin: 0;
+  padding: 0;
+  color: rgb(179, 200, 206);
+  letter-spacing: 1.5px;
+  font-family: "Roboto", sans-serif;
+}
+
+.particles {
+  z-index: 0;
+  position: relative;
+}
+
+.columns:not(:last-child) {
+  /* Bulma margin */
+  margin-bottom: 0;
+}
+
+body {
+  background-color: #022a35;
+}
+.container {
+  height: 100vh;
+  background: blue;
+}
+
+#login-section {
+  background-color: #0f404e;
+  border-radius: 2%;
+  position: absolute;
+  -webkit-box-shadow: 3px 3px 41px 1px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 3px 3px 41px 1px rgba(0, 0, 0, 0.6);
+  box-shadow: 3px 3px 41px 1px rgba(0, 0, 0, 0.6);
+}
+
+.is-vertical-center {
+  display: flex;
+  align-items: center;
+}
+
+.full-height {
+  height: 100vh;
+}
+
+.is-centered {
+  text-align: center;
+}
+
+.login-title {
+  color: #ffffff;
+  text-align: center;
+  font-size: 350%;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin: 2vh;
+}
+
+input {
+  text-align: center;
+}
+
+.login-input {
+  border: none;
+  padding: 0.2vw;
+  margin: 1.5vh;
+  border-radius: 2%;
+  font-size: 150%;
+}
+
+.login-button {
+  font-size: 150%;
+  border: 0;
+  padding: 0.5vw;
+  margin: 1vh;
+  border-radius: 5%;
+}
+
+.login-button:hover {
+    opacity: 0.9;
+}
+
+.login-button:active {
+  transform: translateY(2px);
+}
