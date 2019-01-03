@@ -12,15 +12,26 @@
   <body>
     <div class="columns is-vertical-center full-height"id="particles-js">
       <div class="column is-6 is-offset-3" id="login-section">
-        <h1 class="title login-title is-centered">"To-Do List"</h1>
-        <form class="is-centered">
-            <input class="login-input" type="text" placeholder="Email"><br>
-            <input class="login-input" type="password" placeholder="Password"><br>
-            <input class="button is-medium" type="submit" value="Login">
-        </form>
+        <h1 class="title login-title">"To-Do List"</h1>
+        <div class="login-page">        
+            <input class="login-input" type="text" placeholder="Email" id="email-field"><br>
+            <input class="login-input" type="password" placeholder="Password" id="password-field"><br>
+            <input class="button is-medium" type="submit" value="Login" id="submit-button"><br><br>
+            <a><div class="home-navbar login-navbar" >Login</div></a>
+            <a><div class="home-navbar register-navbar">Register</div></a>
+        </div>
+        <div class="register-page" style="display:none">        
+                <input class="login-input" type="text" placeholder="Email" id="register-email-field"><br>
+                <input class="login-input" type="password" placeholder="Password" id="register-password-field"><br>
+                <input class="button is-medium" type="submit" value="Register" id="submit-register-button"><br><br>
+                <a><div class="home-navbar login-navbar" >Login</div></a>
+                <a><div class="home-navbar register-navbar">Register</div></a>
+            </div>  
       </div>
     </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="assets/js/login-form.js"></script>
     <script src="assets/js/particles.js"></script>
-    <script src="assets/js/particles-app.js"></script>
+    <script src="assets/js/particles-app.js"></script>  
   </body>
 </html>
