@@ -76,12 +76,8 @@ input {
   font-size: 150%;
 }
 
-.login-button {
-  font-size: 150%;
-  border: 0;
-  padding: 0.5vw;
-  margin: 1vh;
-  border-radius: 5%;
+#submit-register-button, #submit-login-button {
+  margin-top: 1vh;
 }
 
 .login-button:hover {

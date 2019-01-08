@@ -31,6 +31,9 @@ app.use(passport.initialize());
 const users = require("./api/users");
 app.use("/api/users/", users);
 
+const tasks = require("./api/tasks");
+app.use("/api/tasks/", tasks);
+
 app.listen(port, () => {
   console.log(`Server runninng on port ${port}`);
 });

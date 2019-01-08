@@ -6,12 +6,14 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const keys = require("../config/keys");
 
+// GET ALL USERS
 router.get("/", (req, res) => {
-  res.json({
-    status: "OK"
+  User.find((err, users) => {
+    res.json(users);
   });
 });
 
+// REGISTER NEW USER
 router.post("/register", (req, res) => {
   User.findOne({
     email: req.body.email
@@ -35,6 +37,7 @@ router.post("/register", (req, res) => {
   });
 });
 
+// LOGIN A USER
 router.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
