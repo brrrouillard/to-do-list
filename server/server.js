@@ -1,8 +1,10 @@
 const express = require("express");
-const app = express();
-const cors = require('cors');
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const passport = require("passport");
+
+const app = express();
 
 const db = require("./config/keys").mongoURI;
 
@@ -16,12 +18,17 @@ mongoose
 
 const port = process.env.PORT || 8080;
 
+// MIDDLEWARES
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
 app.use(cors());
 
-const users = require("./api/users");
+app.use(passport.initialize());
+// require('./config/passport')(passport);
 
+// ROUTES
+const users = require("./api/users");
 app.use("/api/users/", users);
 
 app.listen(port, () => {
