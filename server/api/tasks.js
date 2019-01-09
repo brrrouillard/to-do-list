@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const Task = require("../models/Task");
@@ -26,7 +25,8 @@ router.post("/add", (req, res) => {
   const newTask = new Task({
     user: req.body.id,
     name: req.body.name,
-    importance: req.body.importance
+    importance: req.body.importance,
+    isDone: true
   });
 
   newTask.save(err => {
@@ -34,5 +34,18 @@ router.post("/add", (req, res) => {
     res.status(200).send({ status: "OK" });
   });
 });
+
+// UPDATE A TASK
+router.put("/:id", (req, res) => {
+  Task.findByIdAndUpdate({ _id: req.params.id }, req.body, (err, task) => {
+    res.status(200).send(task);
+  });
+});
+
+// DELETE A TASK
+router.delete("/:id", (req, res) => {
+  Task.findByIdAndDelete({_id: req.params.id})
+    .then(task => res.status(200).send(task));
+})
 
 module.exports = router;

@@ -129,15 +129,52 @@ input {
 
 .todo-checkbox {
   transform: scale(2);
+  vertical-align: middle;
+  align-self: center;
+  margin-right: 2vw;
 }
 
 
 .checked-task {
   text-decoration: line-through;
-  transition: 
 }
 
 #add-task-error-message {
   color: #FFF;
   text-align: center;
 }
+
+.todo {
+  display: flex;
+  border-radius: 4%;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.todo:hover {
+  background-color: #0d3540;
+  transition-duration: 0.15s;
+}
+
+.delete-task-button {
+  color: #fcfcfa;
+  background-color: #09232b;
+  padding: 0 3%;
+  font-size: 100%;
+  font-weight: 800;
+  margin-left: auto;
+  opacity: 0;
+  border-radius: 10%;
+  cursor: pointer;
+}
+
+.delete-task-button:hover {
+  opacity: 1;
+  transition-duration: 0.15s;
+} 
+
+.delete-task-button:active {
+  border-radius: 25%;
+  transform: scale(0.9);
+  transition-duration: 0.175s;
+} 
