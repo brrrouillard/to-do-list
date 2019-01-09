@@ -4,6 +4,9 @@ const submitLogin = document.querySelector("#submit-login-button");
 const usersApi = "http://localhost:8080/api/users/";
 const tasksApi = "http://localhost:8080/api/tasks/";
 
+const tasksArray = []; // Contains every tasks
+let firstLoad = true; // Flag used to load the array the first
+
 // TO DO : change this variable with user retrieved using JWT token
 let user = "5c2e1a697dbba64fbfa73167";
 
@@ -38,7 +41,7 @@ const showPage = pageName => {
     document
       .querySelector(".todos-page")
       .setAttribute("style", "display: block");
-    refreshTasks();
+    getTasks();
     document
       .querySelector(".register-page")
       .setAttribute("style", "display: none");
@@ -113,7 +116,6 @@ login.forEach(e =>
  * TO-DO LIST LISTENERS
  */
 
-
 /**
  * Refresh tasks when a checkbox is ticked
  */
@@ -140,30 +142,36 @@ const refreshCheckboxes = () => {
  * Refresh all the tasks in the To-Do list
  */
 
-const refreshTasks = () => {
+const getTasks = () => {
   console.log("Refreshing tasks");
   const tasksList = document.querySelector("#list-todo-section");
   tasksList.innerHTML = "";
-  axios
-    .get(tasksApi + user)
-    .then(res => {
-      const tasks = res.data;
-      tasks.forEach(task => {
-        const node = document.createElement("div");
-        const taskName = document.createElement("span");
-        taskName.dataset.id = task._id;
-        taskName.innerHTML = `${task.name}`;
-        node.innerHTML = `<input type="checkbox" id="${
-          task._id
-        }" class="todo-checkbox"> `;
-        node.appendChild(taskName);
-        tasksList.appendChild(node);
+  if (firstLoad) {
+    // Use the API call to retrieve the list
+    axios
+      .get(tasksApi + user)
+      .then(res => {
+        const tasks = res.data;
+        tasks.forEach(task => {
+          tasksArray.push(task); // Push every task object in the array
+          const node = document.createElement("div");
+          const taskSpan = document.createElement("span");
+          taskSpan.dataset.id = task._id;
+          taskSpan.innerHTML = `${task.name}`;
+          node.innerHTML = `<input type="checkbox" id="${
+            task._id
+          }" class="todo-checkbox"> `;
+          node.appendChild(taskSpan);
+          tasksList.appendChild(node);
+        });
+      })
+      .catch(err => console.log(err))
+      .then(() => {
+        console.log(tasksArray);
+        firstLoad = false;
+        refreshCheckboxes();
       });
-    })
-    .catch(err => console.log(err))
-    .then(() => {
-      refreshCheckboxes();
-    });
+  }
 };
 
 const taskField = document.querySelector("#add-task-field");
@@ -173,14 +181,28 @@ const addTask = () => {
     document.querySelector("#add-task-error-message").innerHTML =
       "Task cannot be empty";
   } else {
+    const newTask = {
+      name: taskField.value,
+      importance: 1,
+      id: user
+    };
+
+    tasksArray.push(newTask);
+    const tasksList = document.querySelector("#list-todo-section");
+    const node = document.createElement("div");
+    const taskSpan = document.createElement("span");
+    taskSpan.dataset.id = newTask.id;
+    taskSpan.innerHTML = `${newTask.name}`;
+    node.innerHTML = `<input type="checkbox" id="${
+      newTask.id
+    }" class="todo-checkbox"> `;
+    node.appendChild(taskSpan);
+    tasksList.appendChild(node);
+
     axios
-      .post(tasksApi + "add", {
-        name: taskField.value,
-        importance: 1,
-        id: user
-      })
+      .post(tasksApi + "add", newTask)
       .then(function(response) {
-        refreshTasks();
+        console.log(response);
       })
       .catch(function(error) {
         console.log(error);
@@ -189,7 +211,7 @@ const addTask = () => {
 };
 
 taskField.addEventListener("keypress", e => {
-  if (e.key == "Enter"){
+  if (e.key == "Enter") {
     addTask();
   }
-})
+});
