@@ -9,14 +9,15 @@ const keys = require("../config/keys");
 // GET ALL TASKS
 router.get("/", (req, res) => {
   Task.find((err, tasks) => {
-    res.send(tasks);
+    res.json(tasks);
   });
 });
 
 // GET TASKS FOR A SPECIFIC USER
 router.get("/:user", (req, res) => {
+  console.log(req.params.user);
   Task.find({ user: req.params.user }, (err, tasks) => {
-    res.send(tasks);
+    res.json(tasks);
   });
 });
 
@@ -30,7 +31,7 @@ router.post("/add", (req, res) => {
 
   newTask.save(err => {
     console.log(err);
-    res.status(400).send({ status: "OK" });
+    res.status(200).send({ status: "OK" });
   });
 });
 

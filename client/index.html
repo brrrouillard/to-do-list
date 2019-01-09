@@ -11,12 +11,13 @@
   </head>
   <body>
     <div class="columns is-vertical-center full-height"id="particles-js">
-      <div class="column is-6 is-offset-3" id="login-section">
+      <div class="column is-6 is-offset-3" id="main-section">
         <h1 class="title login-title">"To-Do List"</h1>
 
-        <div class="login-page">        
-            <input class="login-input" type="text" placeholder="Email" id="email-field"><br>
-            <input class="login-input" type="password" placeholder="Password" id="password-field"><br>
+        <div class="login-page">    
+            <h3 id="login-error-message"></h3>      
+            <input class="login-input" type="text" placeholder="Email" id="login-email-field"><br>
+            <input class="login-input" type="password" placeholder="Password" id="login-password-field"><br>
             <input class="button is-medium" type="submit" value="Login" id="submit-login-button"><br><br>
             <h3>Forgot your password?</h3><br>
             <a><div class="home-navbar login-navbar" >Login</div></a>
@@ -30,12 +31,19 @@
                 <input class="button is-medium" type="submit" value="Register" id="submit-register-button"><br><br>
                 <a><div class="home-navbar login-navbar" >Login</div></a>
                 <a><div class="home-navbar register-navbar">Register</div></a>
-            </div>  
+        </div>  
+
+        <div class="todos-page" style="display:none">     
+            <div id="add-todo-section">
+                <h5 class="title is-5" id="add-task-error-message"></h5>  
+                <input class="todo-input" type="text" placeholder="Add new task" id="add-task-field">
+            </div>
+            <div id="list-todo-section"></div>
+
+        </div>  
       </div>
 
-      <div class="todos-page" style="display:none">     
-            <div>Hello</div>
-        </div>  
+      
   </div>
     </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
