@@ -26,7 +26,7 @@ router.post("/add", (req, res) => {
     user: req.body.id,
     name: req.body.name,
     importance: req.body.importance,
-    isDone: true
+    isDone: false
   });
 
   newTask.save(err => {

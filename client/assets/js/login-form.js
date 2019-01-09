@@ -137,6 +137,13 @@ const addCheckboxListener = checkbox => {
   });
 };
 
+const addDeleteListener = button => {
+  button.addEventListener("click", () => {
+    button.parentNode.remove();
+    axios.delete(tasksApi + button.dataset.id).then(console.log("deleted"));
+  });
+};
+
 /**
  * Initialize all checkboxes at start
  */
@@ -184,6 +191,7 @@ const initTasks = () => {
           node.appendChild(taskSpan);
           node.appendChild(deleteButton);
           tasksList.appendChild(node);
+          addDeleteListener(deleteButton);
 
           if (task.isDone) {
             checkboxNode.checked = true;
@@ -219,14 +227,24 @@ const addTask = () => {
     const taskSpan = document.createElement("span");
     taskSpan.dataset.id = newTask.id;
     taskSpan.innerHTML = `${newTask.name}`;
-    node.innerHTML = `<input type="checkbox" id="x${
-      // Add a x at the beginning to not start with a number
-      newTask.id
-    }" class="todo-checkbox"> `;
-    node.appendChild(taskSpan);
-    tasksList.appendChild(node);
 
-    addCheckboxListener(document.querySelector(`#x${newTask.id}`));
+    const checkboxNode = document.createElement("input");
+    checkboxNode.setAttribute("type", "checkbox");
+    checkboxNode.setAttribute("id", `x${newTask.id}`);
+    checkboxNode.dataset.done = false;
+    checkboxNode.setAttribute("class", "todo-checkbox");
+
+    const deleteButton = document.createElement("div");
+    deleteButton.innerHTML = " X ";
+    deleteButton.setAttribute("class", "delete-task-button");
+    deleteButton.dataset.id = newTask.id;
+
+    node.appendChild(checkboxNode);
+    node.appendChild(taskSpan);
+    node.appendChild(deleteButton);
+    tasksList.appendChild(node);
+    addDeleteListener(deleteButton);
+    addCheckboxListener(checkboxNode);
 
     axios
       .post(tasksApi + "add", newTask)
