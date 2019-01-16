@@ -1,0 +1,19 @@
+.todo-item {
+    display: flex;
+    padding: 1vh;
+}
+
+.todo-item > input {
+    display: block;
+    flex: 1;
+}
+
+.todo-item > span {
+    display: block;
+    flex: 10;
+}
+
+.todo-item > button {
+    display: block;
+    flex: 1;
+}

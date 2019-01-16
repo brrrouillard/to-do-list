@@ -10,10 +10,6 @@ const TaskSchema = new Schema({
     type: String,
     required: true
   },
-  importance: {
-    type: Number,
-    required: true
-  },
   isDone: {
     type: Boolean,
     default: false

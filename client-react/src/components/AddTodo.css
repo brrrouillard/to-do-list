@@ -1,0 +1,15 @@
+form {
+    padding: 2vh;
+    display: flex;
+}
+
+form > input {
+    font-size: 70%;
+    padding: 3%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+form > button {
+    display: none;
+}

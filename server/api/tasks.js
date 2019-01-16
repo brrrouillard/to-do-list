@@ -25,7 +25,6 @@ router.post("/add", (req, res) => {
   const newTask = new Task({
     user: req.body.id,
     name: req.body.name,
-    importance: req.body.importance,
     isDone: false
   });
 

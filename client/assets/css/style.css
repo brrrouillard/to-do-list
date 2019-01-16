@@ -168,13 +168,19 @@ input {
   cursor: pointer;
 }
 
-.delete-task-button:hover {
+.delete-task-button-active {
   opacity: 1;
   transition-duration: 0.15s;
-} 
+}
 
 .delete-task-button:active {
   border-radius: 25%;
   transform: scale(0.9);
   transition-duration: 0.175s;
 } 
+
+#delete-all-message {
+  padding-top: 1vh;
+  font-size: 200;
+  color: rgb(179, 200, 206);
+}

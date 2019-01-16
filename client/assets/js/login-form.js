@@ -138,6 +138,12 @@ const addCheckboxListener = checkbox => {
 };
 
 const addDeleteListener = button => {
+  button.parentNode.addEventListener("mouseenter", () => {
+    button.classList.toggle("delete-task-button-active");
+  });
+  button.parentNode.addEventListener("mouseleave", () => {
+    button.classList.toggle("delete-task-button-active");
+  });
   button.addEventListener("click", () => {
     button.parentNode.remove();
     axios.delete(tasksApi + button.dataset.id).then(console.log("deleted"));
@@ -260,5 +266,15 @@ const addTask = () => {
 taskField.addEventListener("keypress", e => {
   if (e.key == "Enter") {
     addTask();
+  }
+});
+
+const deleteAllButton = document.querySelector("#delete-all-message");
+deleteAllButton.addEventListener("click", () => {
+  while (document.querySelector("#list-todo-section").firstChild) {
+    const currentNode = document.querySelector("#list-todo-section").firstChild;
+    const id = currentNode.firstChild.id.slice(1);
+    currentNode.removeChild(currentNode.firstChild);
+    axios.delete(tasksApi + id).then(console.log("deleted"));
   }
 });
