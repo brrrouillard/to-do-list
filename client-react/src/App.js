@@ -3,6 +3,7 @@ import "./App.css";
 
 import Todos from "./components/Todos";
 import AddTodo from "./components/AddTodo";
+import Footer from "./components/Footer";
 
 class App extends Component {
   state = {
@@ -41,6 +42,15 @@ class App extends Component {
     this.setState({ todos: arr });
   };
 
+  changeCompleteAll = isActive => {
+    this.setState({
+      todos: this.state.todos.map(todo => {
+        todo.isDone = isActive ? false : true;
+        return todo;
+      })
+    });
+  };
+
   changeComplete = name => {
     this.setState({
       todos: this.state.todos.map(todo => {
@@ -54,15 +64,23 @@ class App extends Component {
 
   render() {
     return (
+      <>
+      <h1 className="title">Todos</h1>
       <div className="App">
-        <h1>"TO-DO LIST"</h1>
-        <AddTodo addTodo={this.addTodo} />
+        <AddTodo 
+        addTodo={this.addTodo}
+        changeCompleteAll={this.changeCompleteAll}
+        />
         <Todos
           todos={this.state.todos}
           delTodo={this.delTodo}
           changeComplete={this.changeComplete}
         />
+        <Footer 
+        todos={this.state.todos}
+        />
       </div>
+      </>
     );
   }
 }

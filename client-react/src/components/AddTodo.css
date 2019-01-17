@@ -1,15 +1,45 @@
 form {
-    padding: 2vh;
-    display: flex;
+  display: flex;
+  border-bottom: 1px solid #f1f1f1;
+  margin-bottom: 5px;
 }
 
-form > input {
-    font-size: 70%;
-    padding: 3%;
-    margin-left: auto;
-    margin-right: auto;
+form > #addTodoCheck {
+  font-size: 50%;
+  flex: 1;
+}
+
+form > #toggle-all-todo {
+    color: black;
+    flex: 1;
+    font-size: 100%;
+    transform: rotate(90deg);
+    opacity: 0.3;
+}
+
+form > #toggle-all-todo:hover {
+    transition-duration: 120ms;
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+form > #addTodoInput {
+  font-size: 70%;
+  padding: 3%;
+  width: 100%;
+  border: none;
+  flex: 11;
+  background: rgba(0, 0, 0, 0.003);
+  box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.03);
+  font-weight: lighter;
+  color: #4d4d4d;
 }
 
 form > button {
-    display: none;
+  display: none;
+}
+
+.full-opacity {
+    opacity: 1.0 !important;
+    transition-duration: 120ms;
 }

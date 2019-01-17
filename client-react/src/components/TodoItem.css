@@ -1,11 +1,15 @@
 .todo-item {
     display: flex;
-    padding: 1vh;
+    padding: 1vh 0;
+    font-size: 80%;
+    border-bottom: 1px solid #f1f1f1;
+    margin-bottom: 2px;
 }
 
 .todo-item > input {
     display: block;
     flex: 1;
+    border-radius: 50%;
 }
 
 .todo-item > span {
@@ -15,5 +19,22 @@
 
 .todo-item > button {
     display: block;
+    opacity: 0;
     flex: 1;
+    border: none;
+    border-radius: 2%;
+    font-weight: bold;
+    cursor: pointer;
+    transition-duration: 200ms;
+}
+
+.todo-item > button:hover {
+    border-radius: 13%;
+    transform: scale(0.95);
+    transition-duration: 200ms;
+}
+
+.show-delete-button {
+    opacity: 1.0 !important;
+    transition-duration: 150ms;
 }

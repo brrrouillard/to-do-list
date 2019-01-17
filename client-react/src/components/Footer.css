@@ -1,0 +1,7 @@
+#footer-section {
+    display: flex;
+    font-size: 50%;
+    margin-top: 2vh;
+    padding: 1%;
+    font-weight: lighter;
+}
