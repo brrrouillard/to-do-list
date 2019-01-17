@@ -17,8 +17,7 @@ h1 {
 @media screen and (max-width: 650px){
   .App {
     font-size: 150%;
-    width: 80vw;
-    
+    width: 80vw;  
   }
 }
 
